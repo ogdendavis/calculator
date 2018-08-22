@@ -1,0 +1,99 @@
+body {
+  background-image: url("https://user-images.githubusercontent.com/34392374/35192586-d520b0a4-fe95-11e7-8cb4-081c84efb5a1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.calc {
+  background: gray;
+  border: 1px solid black;
+  position: fixed;
+  top: 10%;
+  left: 15%;
+  margin: 5px;
+  padding: 5px;
+  height: auto;
+  width: 25%;
+  box-shadow: 10px 10px 10px;
+}
+
+.calc__display {
+  text-align: right;
+  width: 100%;
+  margin: 5px;
+  padding: 3px;
+  background: silver;
+  border: 1px solid black;
+}
+
+#jsWorkInProg {
+  font-size: 0.7rem;
+  height: 1rem;
+  overflow: hidden;
+}
+#jsCurrVal {
+  font-size: 2rem;
+  height: 3rem;
+  font-weight: 700;
+  overflow: hidden;
+}
+#resultTag {
+  font-size: 0.7em;
+}
+
+.calc__keypad {
+  width: 100%;
+  margin: 5px;
+  font-size: 1.2rem;
+}
+.calc__keypad :hover {
+  cursor: default;
+}
+
+.calc__button {
+  padding: 5px;
+  background: white;
+  text-align: center;
+  border: 5px groove;
+}
+
+.calc__button--execute {
+  background: orange;
+  color: white;
+}
+
+.calc__button--operator {
+  background: black;
+  color: white;
+}
+
+.calc__button--number {
+  background: blue;
+  color: white;
+}
+
+.calc__footer {
+  text-align: right;
+  margin: 1px;
+  padding: 1px;
+  width: 100%;
+  font-size: 0.7rem;
+}
+.calc__footer a {
+  color: black;
+}
+
+
+/*resizing for mobile*/
+@media screen and (max-device-width: 800px) {
+  .calc {
+    position: fixed;
+    top: 5%;
+    left: 10%;
+    width: 80%;
+  }
+  body {
+    background-size: auto;
+  }
+}
