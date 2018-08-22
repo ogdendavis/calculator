@@ -19,7 +19,7 @@ var operations = {
   Equal: '='
 };
 
-function btnClick () {
+function btnClick (event) {
   if (alert == true) {
     alert = false;
     clearAll();
