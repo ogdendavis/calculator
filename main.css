@@ -3,6 +3,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   font-family: 'Roboto Mono', monospace;
+  height: 100vh;
 }
 
 .calc {
@@ -86,14 +87,17 @@ body {
 
 
 /*resizing for mobile*/
-@media screen and (max-device-width: 800px) {
+@media screen and (max-width: 640px) {
   .calc {
     position: fixed;
     top: 5%;
     left: 10%;
     width: 80%;
   }
+  .calc__keypad {
+    font-size: 2rem;
+  }
   body {
-    background-size: auto;
+    background-size: cover;
   }
 }
