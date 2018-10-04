@@ -1,3 +1,9 @@
+/*
+  For The Odin Project:
+   - Add rounding to results that overflow the screen
+   - Add keyboard support
+*/
+
 //Just playing with backgrounds
 var time = new Date();
 if (time.getHours() <= 4 || time.getHours() >= 17) {
@@ -5,12 +11,12 @@ if (time.getHours() <= 4 || time.getHours() >= 17) {
 }
 
 //Now to make a working calculator...
-var workInProg = ''; //variable to hold all button pushes before Equal
-var workInProgDisp = ''; //in case WIP gets too long to display
-var currVal = ''; //variable to hold most recent button push
-var result = 'nope'; //to hold the result of a first Equal, so can use it in next one!
-var alert = false; //to override normal display if there's an error
-var operations = {
+let workInProg = ''; //variable to hold all button pushes before Equal
+let workInProgDisp = ''; //in case WIP gets too long to display
+let currVal = ''; //variable to hold most recent button push
+let result = 'nope'; //to hold the result of a first Equal, so can use it in next one!
+let alert = false; //to override normal display if there's an error
+const operations = {
   Div: '/',
   Mul: '*',
   Sub: '-',
@@ -116,3 +122,35 @@ function display() {
     document.getElementById('jsCurrVal').innerHTML = 'ERROR';
   }
 } // end display
+
+function keyPressListener(event) {
+  // If it's a valid key, just make a fake event to send to btnClick!
+  const eventKeyToIdDictionary = {
+    0: 'js0',
+    1: 'js1',
+    2: 'js2',
+    3: 'js3',
+    4: 'js4',
+    5: 'js5',
+    6: 'js6',
+    7: 'js7',
+    8: 'js8',
+    9: 'js9',
+    Enter: 'jsEqual',
+    '=': 'jsEqual',
+    '/': 'jsDiv',
+    '*': 'jsMul',
+    '+': 'jsAdd',
+    '-': 'jsSub',
+    '.': 'jsPoint',
+  };
+  const validCodes = Object.keys(eventKeyToIdDictionary);
+
+  if (validCodes.indexOf(event.key) !== -1) {
+    btnClick({ target: { id: eventKeyToIdDictionary[event.key] } });
+  }
+}
+
+window.onload = () => {
+  document.addEventListener('keypress', keyPressListener);
+}
