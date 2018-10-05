@@ -9,23 +9,23 @@ body {
 .calc {
   background: gray;
   border: 1px solid black;
-  position: fixed;
-  top: 10%;
+  box-shadow: 10px 10px 10px;
+  height: auto;
   left: 15%;
   margin: 5px;
   padding: 5px;
-  height: auto;
+  position: fixed;
+  top: 10%;
   width: 25%;
-  box-shadow: 10px 10px 10px;
 }
 
 .calc__display {
-  text-align: right;
-  width: 100%;
-  margin: 5px;
-  padding: 3px;
   background: silver;
   border: 1px solid black;
+  margin: 5px;
+  padding: 3px;
+  text-align: right;
+  width: 100%;
 }
 
 #jsWorkInProg {
@@ -35,8 +35,8 @@ body {
 }
 #jsCurrVal {
   font-size: 2rem;
-  height: 3rem;
   font-weight: 700;
+  height: 3rem;
   overflow: hidden;
 }
 #resultTag {
@@ -44,19 +44,19 @@ body {
 }
 
 .calc__keypad {
-  width: 100%;
-  margin: 5px;
   font-size: 1.2rem;
+  margin: 5px;
+  width: 100%;
 }
 .calc__keypad :hover {
   cursor: default;
 }
 
 .calc__button {
-  padding: 5px;
   background: white;
-  text-align: center;
   border: 5px groove;
+  padding: 5px;
+  text-align: center;
 }
 
 .calc__button--execute {
@@ -75,11 +75,11 @@ body {
 }
 
 .calc__footer {
-  text-align: right;
+  font-size: 0.7rem;
   margin: 1px;
   padding: 1px;
+  text-align: right;
   width: 100%;
-  font-size: 0.7rem;
 }
 .calc__footer a {
   color: black;
@@ -89,9 +89,9 @@ body {
 /*resizing for mobile*/
 @media screen and (max-width: 640px) {
   .calc {
+    left: 10%;
     position: fixed;
     top: 5%;
-    left: 10%;
     width: 80%;
   }
   .calc__keypad {

@@ -1,21 +1,14 @@
-/*
-  For The Odin Project:
-   - Add rounding to results that overflow the screen
-   - Add keyboard support
-*/
-
-//Just playing with backgrounds
 var time = new Date();
 if (time.getHours() <= 4 || time.getHours() >= 17) {
   document.body.style.backgroundImage = 'url("https://user-images.githubusercontent.com/34392374/35192673-994251b2-fe97-11e7-904e-d4921508c6de.png")'
 }
 
-//Now to make a working calculator...
-let workInProg = ''; //variable to hold all button pushes before Equal
-let workInProgDisp = ''; //in case WIP gets too long to display
-let currVal = ''; //variable to hold most recent button push
-let result = 'nope'; //to hold the result of a first Equal, so can use it in next one!
-let alert = false; //to override normal display if there's an error
+
+let workInProg = '';
+let workInProgDisp = '';
+let currVal = '';
+let result = 'nope';
+let alert = false;
 const operations = {
   Div: '/',
   Mul: '*',
@@ -26,21 +19,20 @@ const operations = {
 };
 
 function btnClick (event) {
-  if (alert == true) {
+  if (alert === true) {
     alert = false;
     clearAll();
   }
-  let id = event.target.id;
-  let elem = id.slice(2);
-  if (result != 'nope') {
-    if (elem.length == 1) { //if they hit a new number
+  const id = event.target.id;
+  const elem = id.slice(2);
+  if (result !== 'nope') { // hits after running a calculation
+    if (elem.length === 1) { // if user enters a number
       clearAll();
-      currVal = '';
-    } else { //if they hit an operator
+    } else { // if user enters an operator
       workInProg = '';
     }
     result = 'nope';
-  } // end if result
+  }
   if (elem.length > 1) {
     if (elem === 'AC') {
       clearAll();
@@ -64,7 +56,7 @@ function btnClick (event) {
     }
   } //end special cases! Now just digits
   else {
-    if (currVal[0] == 0 && currVal[1] != '.') {
+    if (currVal[0] === 0 && currVal[1] !== '.') {
       currVal = elem;
     } else {
       currVal += elem;
@@ -99,26 +91,38 @@ function execute() {
 }
 
 function display() {
-  if (alert == false) {
+  if (alert === false) {
     if (currVal.length > 12) {
       currVal = '';
       document.getElementById('jsCurrVal').innerHTML = "Too long!";
-    } else if (currVal.length == 0) {
+    }
+    else if (currVal.length === 0) {
       document.getElementById('jsCurrVal').innerHTML = '0';
-    } else {
+    }
+    else if (typeof(currVal) === 'number') { // rounding results
+      if (currVal > 999999999999) {
+        currVal = '';
+        document.getElementById('jsCurrVal').innerHTML = "Number too big!";
+      }
+      else if (`${currVal}`.length > 12) { // should only be decimals
+        const shortenedCurrVal = `${currVal}`.slice(0,12);
+        document.getElementById('jsCurrVal').innerHTML = shortenedCurrVal;
+      }
+    }
+    else {
       document.getElementById('jsCurrVal').innerHTML = currVal;
     }
     if (workInProg.length > 40) {
       let wipEnd = workInProg.substring(workInProg.length - 37);
       workInProgDisp = '...' + wipEnd;
       document.getElementById('jsWorkInProg').innerHTML = workInProgDisp;
-    } else if (workInProg.length == 0) {
+    } else if (workInProg.length === 0) {
       document.getElementById('jsWorkInProg').innerHTML = 'Let\'s calculate!'
     } else {
       document.getElementById('jsWorkInProg').innerHTML = workInProg;
     }
   } // end if alert is false
-  else if (alert == true) {
+  else if (alert === true) {
     document.getElementById('jsCurrVal').innerHTML = 'ERROR';
   }
 } // end display
